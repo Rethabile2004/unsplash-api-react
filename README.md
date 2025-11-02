@@ -1,163 +1,108 @@
-## Figma URL
+# Unsplash Image Gallery
 
-[Unsplash Images](https://www.figma.com/file/O2MaAAlr4nznh7m53azatL/Unsplash-images?node-id=0%3A1&t=cYDOCgqOs9IX2If0-1)
+A responsive React application that allows users to search and view high-quality images from Unsplash. It features dark mode support, global context management, and efficient data fetching using React Query.
 
-## Steps
+## Figma Design
 
-#### Setup
+View the design prototype on [Figma](https://www.figma.com/file/O2MaAAlr4nznh7m53azatL/Unsplash-images?node-id=0%3A1&t=cYDOCgqOs9IX2If0-1)
 
-- npm install
-- npm run dev
+## Getting Started
 
-#### Initial Structure and Global Context
+### Setup
 
-Create three components - ThemeToggle, SearchForm and Gallery. Render all of them in App.jsx, and setup global context.
-
-#### Dark Theme - Initial Setup
-
-In the context of creating a state value called 'isDarkTheme' (boolean) and a helper function called 'toggleDarkTheme', set 'isDarkTheme' to the opposite value when 'toggleDarkTheme' is invoked. Pass 'isDarkTheme' and 'toggleDarkTheme' down to 'ThemeToggle'. In 'ThemeToggle', import two icons from the React Icons library (moon and sun) and create a button. When the button is clicked, invoke 'toggleDarkTheme', and display the appropriate icon based on the value of 'isDarkTheme' inside of the button.
-
-#### Dark Theme Class
-
-In the toggleDarkTheme add logic to add and remove .dark-theme class to body element based on isDarkTheme value.
-
-#### Dark Theme - CSS
-
-Create CSS variables for the background color and text color for both dark mode and normal mode, as well as a CSS variable for the dark mode transition.
-
-```css
-:root {
-  /* dark mode setup */
-  --dark-mode-bg-color: #333;
-  --dark-mode-text-color: #f0f0f0;
-  --backgroundColor: var(--grey-50);
-  --textColor: var(--grey-900);
-
-  --darkModeTransition: color 0.3s ease-in-out, background-color 0.3s
-      ease-in-out;
-}
-
-.dark-theme {
-  --textColor: var(--dark-mode-text-color);
-  --backgroundColor: var(--dark-mode-bg-color);
-}
-
-body {
-  transition: var(--darkModeTransition);
-  background: var(--backgroundColor);
-  color: var(--textColor);
-}
+```bash
+npm install
+npm run dev
 ```
 
-#### User Prefers Dark Mode
+## Project Structure
 
-```css
-@media (prefers-color-scheme: dark) {
-  :root {
-    --textColor: var(--dark-mode-text-color);
-    --backgroundColor: var(--dark-mode-bg-color);
-  }
-}
-```
+### Components
 
-#### SearchForm Structure
+- `ThemeToggle`: Handles dark mode switching.
+- `SearchForm`: Captures user input for image search.
+- `Gallery`: Displays fetched images.
 
-Create a form with an input and a submit button. The input should have the following attributes: type='text', name='search', placeholder='cat', and className='form-input search-input'. When the user submits the form, access (for now log)the input value.
+All components are rendered in `App.jsx` and managed via global context.
 
-#### Unsplash Info
+## Features
 
-Unsplash is a website that provides a large collection of high-quality stock photos that are free to use. The Unsplash API is a service that allows developers to access and use Unsplash's collection of photos and related data in their own applications. The API allows developers to search, download, and use the photos in a variety of ways, such as creating photo galleries or integrating them into social media applications. The Unsplash API is widely used by developers to enhance the visual content of their applications or websites.
+### Dark Theme Support
 
-[Unsplash Website](https://unsplash.com/)
+- State variable `isDarkTheme` toggles between light and dark modes.
+- `toggleDarkTheme` function updates the theme state.
+- Icons from React Icons (sun and moon) are used in `ThemeToggle`.
+- `.dark-theme` class is added/removed from the `body` element based on theme state.
+- CSS variables define background and text colors for both themes.
+- Media query detects system preference for dark mode.
 
-#### Sign Up for an Unsplash Account
+### Search Functionality
 
-[Unsplash API](https://unsplash.com/developers)
+- `SearchForm` includes a text input and submit button.
+- On submit, the input value is logged and used to query Unsplash.
+- `searchValue` state is stored in `context.jsx`.
 
-In order to use the Unsplash API to fetch images for your application, you will need to sign up for an account with Unsplash. This will allow you to obtain an API key that you can use to authenticate your requests.
+### Unsplash API Integration
 
-#### Find the API Key and Correct URL for Searching Images
+- Sign up at [Unsplash Developers](https://unsplash.com/developers) to obtain an API key.
+- Register an app and use public authentication.
+- Use the search endpoint to fetch images.
+- Test API endpoints using Thunder Client (VS Code extension).
 
-- register an app
-- authorization (hint : public authentication)
-- search functionality (hint : search photos)
+### Data Fetching with React Query
 
-After signing up for an Unsplash account, you will need to locate your API key and the correct URL to use when searching for images using the Unsplash API. This information can be found in the API documentation provided by Unsplash.
+- `useQuery` is used in `Gallery` to fetch images.
+- `searchValue` is included in the `queryKey` to trigger re-fetching.
+- React Query Dev Tools are installed for debugging and inspection.
 
-#### Test the URL Using Thunder Client VS Code Extension
+### Theme Persistence
 
-Before implementing the API in your application, it is a good practice to test the URL using a tool like Thunder Client VS Code Extension. This will allow you to verify that the URL is correct and that you are able to successfully retrieve images using the API.
+- User's theme preference is stored in `localStorage`.
+- JavaScript checks system preference for dark mode on initial load.
 
-#### Install and Setup React Query in Gallery Component
+### Environment Variables
 
-React Query is a library that can be used to handle API requests in React applications. To fetch images from the Unsplash API, you will need to install and set up React Query in your Gallery component.
+- Store your Unsplash API key in `.env` file.
+- Ensure `.env` is listed in `.gitignore`.
 
-#### Install and Setup React Query Dev Tools
+### Deployment
 
-React Query dev tools provide a way to inspect and debug React Query data and caching behavior. To use this tool, you will need to install and set up the React Query dev tools in your application.
+- Deploy the app to Netlify.
+- Set environment variables in Netlify dashboard to enable API access.
 
-#### Create a searchValue State Value in Context.jsx
+## Styling
 
-In order to implement search functionality in your application, you will need to create a state value to store the user's search input. This can be done in a context file, such as context.jsx.
+- CSS variables and transitions are used for smooth theme switching.
+- Additional styles can be added to enhance UI components.
 
-#### Fix the useQuery
+## Code Snippets
 
-After setting up React Query and creating the searchValue state value, you will need to modify the useQuery function to fetch images based on the user's search input.
-
-#### Check Whether User Prefers Dark Mode with JavaScript
-
-To provide a better user experience, you can check whether the user prefers dark mode using JavaScript. This can be done by accessing the user's system preferences and setting the theme of your application accordingly.
-
-#### Setup Local Storage to Store isDarkTheme State Value
-
-To persist the user's preferred theme across sessions, you can store the isDarkTheme state value in local storage. This will allow the theme to be preserved even if the user closes and reopens the application.
-
-#### Setup ENV Variables in VITE
-
-Environment variables can be used to store sensitive information, such as your Unsplash API key. In order to use environment variables in your application, you will need to set them up in VITE, a build tool for modern web development.
-
-#### Deploy the Application to Netlify and Setup ENV Variables
-
-Once your application is complete, you can deploy it to a hosting platform such as Netlify. When deploying to Netlify, you will need to set up your environment variables to ensure that your application can access your Unsplash API key.
-
-#### Add CSS
-
-Finally, you can add CSS to your application to style the components and provide a polished user interface.
-
-## Additional Info
-
-#### Dark Theme Class - Code
+### Toggle Dark Theme
 
 ```js
 const body = document.querySelector('body');
-body.classList.toggle('dark-theme', newDarkTheme);
+body.classList.toggle('dark-theme', isDarkTheme);
 
-// alternative setup
-document.body.classList.toggle('dark-theme', newDarkTheme);
+// Alternative
+document.body.classList.toggle('dark-theme', isDarkTheme);
 ```
 
-const body = document.querySelector('body'); - This line selects the body element of the current document using the document.querySelector() method, which returns the first element that matches the specified selector. In this case, it is selecting the body element.
+### Form Elements Access
 
-body.classList.toggle('dark-theme', isDarkTheme); - This line toggles the dark-theme class of the body element. The classList property is a read-only list that contains the classes of an element. The toggle() method adds a class to the element if it does not have it, or removes it if it does. In this case, it adds the dark-theme class if isDarkTheme is true, and removes it if isDarkTheme is false.
+```js
+const searchValue = e.target.elements.search.value;
+```
 
-#### Elements Property
+### React Query Notes
 
-The elements property of the event.target object in the handleSubmit function refers to an HTMLCollection containing all the form controls (i.e., input, select, textarea, button, etc.) inside the <form> element.
+- `useQuery` caches results to reduce API calls.
+- `queryKey` ensures data is re-fetched when search input changes.
 
-This is useful because you can use the elements collection to get the values of the form controls when the form is submitted. For example, e.target.elements.search.value would give you the value of the search input field when the form is submitted.
+### Vite Environment Setup
 
-#### React Query Info
+- Create a `.env` file for sensitive keys.
+- Example:
+  ```
+  VITE_UNSPLASH_API_KEY=your_api_key_here
+  ```
 
-By default, useQuery caches the results of the API request for a certain amount of time. This can improve the performance of your application by reducing the number of requests made to the API.
-
-When you specify the queryKey array in the options object for useQuery, you are telling the hook how to identify the data being fetched. If the queryKey array doesn't change between renders of the component, then useQuery will return the cached data instead of re-fetching it from the API.
-
-The queryKey array is used by useQuery to identify which data the query is fetching. When the queryKey array changes, useQuery assumes that the data being fetched has changed, and it re-runs the queryFn to fetch the updated data.
-
-In this case, searchTerm is the user's search input, and it is used to modify the API request URL. By including searchTerm in the queryKey array, you are telling useQuery to re-run the queryFn whenever the user's search input changes, in order to fetch updated data based on the new search term.
-
-Therefore, without including searchTerm in the queryKey array, the useQuery hook would not re-fetch data when the user performs a new search.
-
-#### Vite ENV Vars
-
-- .env : must be included in .gitignore
