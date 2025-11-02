@@ -304,17 +304,17 @@ PROJECT CSS
 Toggle Container
 ========
 */
-
-.toggle-container {
-  width: var(--view-width);
-  max-width: var(--max-width);
+.toggle-container{
+  width:90vw;
+  border-radius: 1px solid red;
+  max-width: 1170px;
   padding: 1rem 0;
-  margin: 0 auto;
+  max-width: 0 auto;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
-.dark-toggle {
+.dark-toggle{
   background: transparent;
   border-color: transparent;
   width: 5rem;
@@ -323,7 +323,8 @@ Toggle Container
   place-items: center;
   cursor: pointer;
 }
-.toggle-icon {
+
+.toggle-icon{
   font-size: 1.5rem;
   color: var(--textColor);
 }
@@ -332,60 +333,58 @@ Toggle Container
 Search Form
 ========
 */
-.title {
-  color: var(--primary-500);
+.title{
+  color: #3c3799;
 }
-.search-form {
-  width: var(--view-width);
-  max-width: var(--fixed-width);
+
+.search-form{
+  width: 90vw;
+  max-width: 1170px;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: 1fr auto;
 }
 
-.search-input {
-  border-color: var(--grey-300);
-  transition: var(--darkModeTransition);
+.search-input{
+  border-color: #3c3799;
+  border-radius: 0;
+  transition: 0.3 ease-in-out all;
   color: var(--textColor);
-  border-radius: 0;
-
-  /* border-right: none; */
 }
 
-.search-form .btn {
+.btn .search-form{
   border-radius: 0;
 }
-.search-form .btn:hover {
-  background: var(--primary-300);
-  color: var(--black);
+.search-form .btn:hover{
+  /* color: var(--black); */
+  background-color: var(--primary-300);
 }
-
 /* 
 ========
 Gallery
 ========
 */
-
-.image-container {
-  width: var(--view-width);
-  max-width: var(--max-width);
+.image-container{
+  width: 90vw;
+  max-width: 1170px;
   margin: 3rem auto;
   display: grid;
   gap: 2rem;
 }
 
-.image-container .img {
+.image-container img{
   height: 10rem;
 }
 
-@media (min-width: 768px) {
-  .image-container {
+@media screen and (min-width:768px) {
+  .image-container{
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 992px) {
-  .image-container {
+
+@media screen and (min-width:990px) {
+  .image-container{
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
