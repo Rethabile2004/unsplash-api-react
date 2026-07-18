@@ -1,108 +1,61 @@
+
 # Unsplash Image Gallery
 
-A responsive React application that allows users to search and view high-quality images from Unsplash. It features dark mode support, global context management, and efficient data fetching using React Query.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![React Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 
-## Figma Design
-
-View the design prototype on [Figma](https://www.figma.com/file/O2MaAAlr4nznh7m53azatL/Unsplash-images?node-id=0%3A1&t=cYDOCgqOs9IX2If0-1)
-
-## Getting Started
-
-### Setup
-
-```bash
-npm install
-npm run dev
-```
-
-## Project Structure
-
-### Components
-
-- `ThemeToggle`: Handles dark mode switching.
-- `SearchForm`: Captures user input for image search.
-- `Gallery`: Displays fetched images.
-
-All components are rendered in `App.jsx` and managed via global context.
+Unsplash Image Gallery is a React-based web application that allows users to search and view high-quality photos from the Unsplash API. It features a responsive layout, dark mode support, global state management with context, and efficient data fetching using React Query.
 
 ## Features
 
-### Dark Theme Support
+- **Search & View Images:** Real-time search to explore the vast collection of Unsplash photos.
+- **Dark Mode Support:** Built-in theme toggle to seamlessly switch between light and dark modes.
+- **Efficient Data Fetching:** Utilizes **React Query** for caching, background updates, and optimized API requests.
+- **Global State Management:** Uses React's Context API (`src/context.jsx`) to manage themes and global states cleanly without prop-drilling.
+- **Responsive Design:** Fully responsive layout providing a native-like experience on desktop, tablet, and mobile.
 
-- State variable `isDarkTheme` toggles between light and dark modes.
-- `toggleDarkTheme` function updates the theme state.
-- Icons from React Icons (sun and moon) are used in `ThemeToggle`.
-- `.dark-theme` class is added/removed from the `body` element based on theme state.
-- CSS variables define background and text colors for both themes.
-- Media query detects system preference for dark mode.
+## Getting Started
 
-### Search Functionality
+### Prerequisites
 
-- `SearchForm` includes a text input and submit button.
-- On submit, the input value is logged and used to query Unsplash.
-- `searchValue` state is stored in `context.jsx`.
+- Node.js (v18 or higher recommended)
+- An Unsplash Developer API Key. You can get one at [Unsplash Developers](https://unsplash.com/developers).
 
-### Unsplash API Integration
+### Installation
 
-- Sign up at [Unsplash Developers](https://unsplash.com/developers) to obtain an API key.
-- Register an app and use public authentication.
-- Use the search endpoint to fetch images.
-- Test API endpoints using Thunder Client (VS Code extension).
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Rethabile2004/unsplash-api-react.git
+   cd unsplash-api-react
+   ```
 
-### Data Fetching with React Query
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-- `useQuery` is used in `Gallery` to fetch images.
-- `searchValue` is included in the `queryKey` to trigger re-fetching.
-- React Query Dev Tools are installed for debugging and inspection.
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory and add your Unsplash API key:
+   ```env
+   VITE_UNSPLASH_API_KEY=your_access_key_here
+   ```
 
-### Theme Persistence
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
 
-- User's theme preference is stored in `localStorage`.
-- JavaScript checks system preference for dark mode on initial load.
+## Project Structure
 
-### Environment Variables
+- `src/SearchForm.jsx` - The main input component for querying the Unsplash API.
+- `src/Gallery.jsx` - Responsive grid component displaying fetched images.
+- `src/ThemeToggle.jsx` - Component to toggle Dark/Light mode.
+- `src/context.jsx` - Global Context provider managing the theme and app state.
 
-- Store your Unsplash API key in `.env` file.
-- Ensure `.env` is listed in `.gitignore`.
+## Built With
 
-### Deployment
-
-- Deploy the app to Netlify.
-- Set environment variables in Netlify dashboard to enable API access.
-
-## Styling
-
-- CSS variables and transitions are used for smooth theme switching.
-- Additional styles can be added to enhance UI components.
-
-## Code Snippets
-
-### Toggle Dark Theme
-
-```js
-const body = document.querySelector('body');
-body.classList.toggle('dark-theme', isDarkTheme);
-
-// Alternative
-document.body.classList.toggle('dark-theme', isDarkTheme);
-```
-
-### Form Elements Access
-
-```js
-const searchValue = e.target.elements.search.value;
-```
-
-### React Query Notes
-
-- `useQuery` caches results to reduce API calls.
-- `queryKey` ensures data is re-fetched when search input changes.
-
-### Vite Environment Setup
-
-- Create a `.env` file for sensitive keys.
-- Example:
-  ```
-  VITE_UNSPLASH_API_KEY=your_api_key_here
-  ```
-
+- [React](https://reactjs.org/) - UI Library
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
+- [React Query](https://tanstack.com/query/v3/) - Data fetching and state synchronization
+- [Unsplash API](https://unsplash.com/developers) - Image data source
